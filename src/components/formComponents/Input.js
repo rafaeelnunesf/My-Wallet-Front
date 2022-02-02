@@ -10,6 +10,7 @@ const Input = styled.input`
   border-radius: 5px;
   outline: none;
   border: 0;
+  border: ${(props) => props.hasColor && "1px solid red"};
 
   font-family: Raleway;
   font-style: normal;

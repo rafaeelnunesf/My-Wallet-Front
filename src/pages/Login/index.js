@@ -1,4 +1,5 @@
 import Logo from "../../components/formComponents/Logo";
+import { useState, useEffect } from "react";
 import {
   Container,
   Form,
@@ -8,6 +9,8 @@ import {
 } from "../../components/formComponents";
 
 export default function Login() {
+  const [formData, setFormData] = useState({ email: "", password: "" });
+
   return (
     <Container>
       <Logo>MyWallet</Logo>
