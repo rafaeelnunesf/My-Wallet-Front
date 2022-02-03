@@ -7,12 +7,17 @@ function register(body) {
 }
 
 function login(body) {
-  return axios.post(`${BASE_URL}/login`, body);;
+  return axios.post(`${BASE_URL}/login`, body);
+}
+
+function getRecords(header) {
+  return axios.get(`${BASE_URL}/home`, header);
 }
 
 const api = {
   register,
-  login
+  login,
+  getRecords,
 };
 
 export default api;
