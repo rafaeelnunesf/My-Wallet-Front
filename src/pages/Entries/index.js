@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { useParams } from "react-router";
 import {
   Button,
   Container,
@@ -6,13 +7,12 @@ import {
   ValueInputs,
 } from "../../components/formComponents";
 import { Header } from "../../components/Homecomponents";
-import userContext from "../../contexts/usercontext";
 
 export default function Entries() {
-  const { entrie } = useContext(userContext);
+  const { IDentrie } = useParams();
   return (
     <Container>
-      <Header>{`Nova ${entrie}`}</Header>
+      <Header>{`Nova ${IDentrie === "input" ? "entrada" : "saída"}`}</Header>
       <ValueInputs>
         <Input type="text" placeholder="Valor" name="value" required></Input>
         <Input
@@ -21,7 +21,9 @@ export default function Entries() {
           name="description"
           required
         ></Input>
-        <Button>{`Salvar ${entrie}`}</Button>
+        <Button>{`Salvar ${
+          IDentrie === "input" ? "entrada" : "saída"
+        }`}</Button>
       </ValueInputs>
     </Container>
   );
