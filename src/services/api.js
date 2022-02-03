@@ -10,8 +10,8 @@ function login(body) {
   return axios.post(`${BASE_URL}/login`, body);
 }
 
-function getRecords(header) {
-  return axios.get(`${BASE_URL}/home`, header);
+function getRecords(headers) {
+  return axios.get(`${BASE_URL}/home`, headers);
 }
 
 const api = {

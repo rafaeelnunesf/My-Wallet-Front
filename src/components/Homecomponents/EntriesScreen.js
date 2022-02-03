@@ -4,9 +4,11 @@ const EntriesScreen = styled.div`
   height: 446px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-
+  h1 {
+    margin: auto auto;
+  }
   background: #ffffff;
   border-radius: 5px;
 
@@ -15,5 +17,7 @@ const EntriesScreen = styled.div`
   text-align: center;
 
   color: #868686;
+
+  padding: 12px;
 `;
 export default EntriesScreen;
