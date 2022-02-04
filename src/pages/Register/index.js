@@ -51,16 +51,15 @@ export default function Register() {
       await api.register({ ...userData });
       navigate("/");
     } catch (err) {
-      console.log(err.response.data);
       const condition1 =
         "Nome de usuário já cadastrado! Tente outro por favor.";
       const condition2 = "email já cadastrado! Tente outro por favor.";
-      const condition3 = '"email" must be a valid email';
+      const condition3 = "\"email\" must be a valid email";
       if (err.response.data === condition1)
         setErrors({ ...errors, nameError: condition1 });
       else if (
         err.response.data === condition2 ||
-        err.response.data === condition3
+        err.response.data[0].message === condition3
       )
         setErrors({ ...errors, emailError: "Email inválido ou já cadastrado" });
     }
