@@ -46,10 +46,10 @@ export default function Home() {
           {entries.length === 0 ? (
             <h1>Não há registros de entrada ou saída</h1>
           ) : (
-            entries.map(({ date, description, value }, index) => {
+            entries.map(({ date, description, value, _id }) => {
               balance += value;
               return (
-                <Entries key={index}>
+                <Entries key={_id}>
                   <div>
                     <p>{date.slice(0, -5)}</p>
                     <p>{description}</p>
