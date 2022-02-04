@@ -54,7 +54,9 @@ export default function Home() {
                     <p>{date.slice(0, -5)}</p>
                     <p>{description}</p>
                   </div>
-                  <Value hasColor={value >= 0}>{value.toFixed(2)}</Value>
+                  <Value hasColor={value >= 0}>
+                    {Math.abs(value).toFixed(2)}
+                  </Value>
                 </Entries>
               );
             })
@@ -62,7 +64,7 @@ export default function Home() {
         </div>
         <Balance hasColor={balance >= 0}>
           <p>SALDO</p>
-          <p>{balance.toFixed(2)}</p>
+          <p>{Math.abs(balance).toFixed(2)}</p>
         </Balance>
       </EntriesScreen>
       <Buttons>
