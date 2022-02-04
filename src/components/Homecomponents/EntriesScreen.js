@@ -22,6 +22,12 @@ const EntriesScreen = styled.div`
 
   div {
     width: 302px;
+    max-height: 350px;
+    overflow: scroll;
+
+    ::-webkit-scrollbar {
+      display: none;
+    }
   }
 `;
 export default EntriesScreen;
