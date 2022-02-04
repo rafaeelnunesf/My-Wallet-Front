@@ -10,6 +10,7 @@ import {
   EntrieButton,
   Entries,
   Value,
+  Balance,
 } from "../../components/Homecomponents";
 import { useContext, useEffect, useState } from "react";
 import authContext from "../../contexts/authContext";
@@ -33,6 +34,7 @@ export default function Home() {
       console.log(error);
     }
   }
+  let balance = 0;
   return (
     <Container>
       <Header>
@@ -40,19 +42,28 @@ export default function Home() {
         <img src={exit} alt="sair" onClick={() => navigate("/")}></img>
       </Header>
       <EntriesScreen>
-        {entries.length === 0 ? (
-          <h1>Não há registros de entrada ou saída</h1>
-        ) : (
-          entries.map(({ date, description, value, userId }, index) => (
-            <Entries key={index}>
-              <div>
-                <p>{date.slice(0, -5)}</p>
-                <p>{description}</p>
-              </div>
-              <Value hasColor={value >= 0}>{value.toFixed(2)}</Value>
-            </Entries>
-          ))
-        )}
+        <div>
+          {entries.length === 0 ? (
+            <h1>Não há registros de entrada ou saída</h1>
+          ) : (
+            entries.map(({ date, description, value }, index) => {
+              balance += value;
+              return (
+                <Entries key={index}>
+                  <div>
+                    <p>{date.slice(0, -5)}</p>
+                    <p>{description}</p>
+                  </div>
+                  <Value hasColor={value >= 0}>{value.toFixed(2)}</Value>
+                </Entries>
+              );
+            })
+          )}
+        </div>
+        <Balance hasColor={balance >= 0}>
+          <p>SALDO</p>
+          <p>{balance.toFixed(2)}</p>
+        </Balance>
       </EntriesScreen>
       <Buttons>
         <EntrieButton onClick={() => navigate(`/entries/input`)}>

@@ -4,5 +4,14 @@ import EntriesScreen from "./EntriesScreen";
 import Header from "./Header";
 import Entries from "./Entries";
 import Value from "./Value";
+import Balance from "./Balance";
 
-export { Buttons, EntrieButton, EntriesScreen, Header, Entries, Value };
+export {
+  Buttons,
+  EntrieButton,
+  EntriesScreen,
+  Header,
+  Entries,
+  Value,
+  Balance,
+};
