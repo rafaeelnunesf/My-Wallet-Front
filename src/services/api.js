@@ -14,10 +14,15 @@ function getRecords(headers) {
   return axios.get(`${BASE_URL}/home`, headers);
 }
 
+function postEntrie(headers, param, body) {
+  return axios.post(`${BASE_URL}/entries/${param}`, body, headers);
+}
+
 const api = {
   register,
   login,
   getRecords,
+  postEntrie,
 };
 
 export default api;

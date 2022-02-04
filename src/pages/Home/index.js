@@ -2,7 +2,7 @@ import { Container } from "../../components/formComponents";
 import plus from "../../assets/plus.svg";
 import minus from "../../assets/minus.svg";
 import exit from "../../assets/exit.svg";
-import { useNavigate, useParams } from "react-router";
+import { useNavigate } from "react-router";
 import {
   Header,
   EntriesScreen,
@@ -33,7 +33,6 @@ export default function Home() {
       console.log(error);
     }
   }
-  console.log(entries);
   return (
     <Container>
       <Header>
@@ -44,13 +43,13 @@ export default function Home() {
         {entries.length === 0 ? (
           <h1>Não há registros de entrada ou saída</h1>
         ) : (
-          entries.map(({ date, description, value }) => (
-            <Entries>
+          entries.map(({ date, description, value, userId }, index) => (
+            <Entries key={index}>
               <div>
                 <p>{date.slice(0, -5)}</p>
                 <p>{description}</p>
               </div>
-              <Value hasColor={value >= 0}>{value}</Value>
+              <Value hasColor={value >= 0}>{value.toFixed(2)}</Value>
             </Entries>
           ))
         )}
