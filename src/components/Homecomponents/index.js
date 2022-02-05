@@ -5,6 +5,7 @@ import Header from "./Header";
 import Entries from "./Entries";
 import Value from "./Value";
 import Balance from "./Balance";
+import Delete from "./Delete";
 
 export {
   Buttons,
@@ -14,4 +15,5 @@ export {
   Entries,
   Value,
   Balance,
+  Delete
 };

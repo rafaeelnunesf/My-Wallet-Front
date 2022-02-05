@@ -11,10 +11,12 @@ import {
   Entries,
   Value,
   Balance,
+  Delete
 } from "../../components/Homecomponents";
 import { useContext, useEffect, useState } from "react";
 import authContext from "../../contexts/authContext";
 import api from "../../services/api";
+import Swal from 'sweetalert2'
 
 export default function Home() {
   let navigate = useNavigate();
@@ -30,6 +32,36 @@ export default function Home() {
     try {
       const dataEntries = await api.getRecords(headers);
       setEntries(dataEntries.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  function confirm(_id) {
+    Swal.fire({
+      title: 'Você tem certeza?',
+      text: "Você não poderá reverter essa ação",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText:"Cancelar",
+      confirmButtonText: 'Sim, deletar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Deletado!',
+          'Essa entrada foi deletada',
+          'success'
+        )
+        deleteThisEntrie(_id)
+      }
+    })
+  }
+  async function deleteThisEntrie(_id) {
+    const headers = { headers: { Authorization: `Bearer ${userData.token}` } };
+    try {
+      await api.deleteEntrie(headers,_id);
+      getEntries()
     } catch (error) {
       console.log(error);
     }
@@ -57,6 +89,7 @@ export default function Home() {
                   <Value hasColor={value >= 0}>
                     {Math.abs(value).toFixed(2)}
                   </Value>
+                  <Delete onClick={()=>confirm(_id)}>x</Delete>
                 </Entries>
               );
             })
