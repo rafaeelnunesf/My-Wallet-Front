@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// const BASE_URL = "https://my-wallet-back.herokuapp.com";
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://my-wallet-back.herokuapp.com";
+// const BASE_URL = "http://localhost:5000";
 
 function register(body) {
   return axios.post(`${BASE_URL}/register`, body);
