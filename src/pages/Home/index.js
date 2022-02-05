@@ -66,6 +66,12 @@ export default function Home() {
       console.log(error);
     }
   }
+  function handleEdit(_id,value) {
+    if(value<0){
+      return navigate(`/entries/edit/output?_id=${_id}`)
+    }
+    return navigate(`/entries/edit/input?_id=${_id}`)
+  }
   let balance = 0;
   return (
     <Container>
@@ -84,7 +90,7 @@ export default function Home() {
                 <Entries key={_id}>
                   <div>
                     <p>{date.slice(0, -5)}</p>
-                    <p>{description}</p>
+                    <p onClick={()=>handleEdit(_id,value)}>{description}</p>
                   </div>
                   <Value hasColor={value >= 0}>
                     {Math.abs(value).toFixed(2)}
@@ -101,11 +107,11 @@ export default function Home() {
         </Balance>
       </EntriesScreen>
       <Buttons>
-        <EntrieButton onClick={() => navigate(`/entries/input`)}>
+        <EntrieButton onClick={() => navigate(`/entries/add/input`)}>
           <img src={plus} alt="plus"></img>
           <p>Nova entrada</p>
         </EntrieButton>
-        <EntrieButton onClick={() => navigate(`/entries/output`)}>
+        <EntrieButton onClick={() => navigate(`/entries/add/output`)}>
           <img src={minus} alt="minus"></img>
           <p>Nova saída</p>
         </EntrieButton>

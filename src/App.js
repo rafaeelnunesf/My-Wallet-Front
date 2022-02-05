@@ -15,7 +15,7 @@ export default function App() {
             <Route path="/" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/home" element={<Home />} />
-            <Route path="/entries/:IDentrie" element={<Entries />} />
+            <Route path="/entries/:page/:type" element={<Entries />} />
           </Routes>
         </BrowserRouter>
       </userContext.Provider>

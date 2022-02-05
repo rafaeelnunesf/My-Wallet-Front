@@ -11,6 +11,9 @@ const StyledLink = styled(Link)`
   line-height: 18px;
 
   color: #ffffff;
+  :hover{
+    cursor: pointer
+  }
 `;
 
 export default StyledLink;

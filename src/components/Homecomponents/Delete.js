@@ -6,5 +6,8 @@ const Delete = styled.p`
   margin-left:10px;
 
   color: #C6C6C6;
+  :hover{
+    cursor: pointer
+  }
 `;
 export default Delete;

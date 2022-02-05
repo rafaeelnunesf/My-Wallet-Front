@@ -14,5 +14,8 @@ const Button = styled.button`
   line-height: 23px;
 
   color: #ffffff;
+  :hover{
+    cursor: pointer
+  }
 `;
 export default Button;

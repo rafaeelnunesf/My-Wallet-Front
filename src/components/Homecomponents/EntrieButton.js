@@ -22,5 +22,8 @@ const EntrieButton = styled.button`
   p {
     width: 40px;
   }
+  :hover{
+    cursor: pointer
+  }
 `;
 export default EntrieButton;

@@ -23,11 +23,14 @@ const Entries = styled.div`
     font-size: 16px;
     line-height: 19px;
     color: #000000;
-
+    
     text-align: start;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    :hover{
+    cursor: pointer
+    }
   }
 `;
 export default Entries;

@@ -11,9 +11,15 @@ import { Header } from "../../components/Homecomponents";
 import dayjs from "dayjs";
 import api from "../../services/api";
 import authContext from "../../contexts/authContext";
+import { useLocation } from "react-router-dom";
 
 export default function Entries() {
-  const { IDentrie } = useParams();
+  const { page, type } = useParams();
+  const {search} = useLocation()
+
+  const searchParams = new URLSearchParams(search)
+  const _id = searchParams.get('_id')
+
   const [entrieData, setEntriedata] = useState({
     value: "",
     description: "",
@@ -33,10 +39,19 @@ export default function Entries() {
   }
   async function handleSubmit(e) {
     e.preventDefault();
-
     const headers = { headers: { Authorization: `Bearer ${userData.token}` } };
+    if(page==="edit"){
+      try {
+        await api.editEntrie(headers, type, { ...entrieData },_id);
+        navigate("/home");
+      } catch (error) {
+        console.log(error);
+      }
+      return
+    }
+
     try {
-      await api.postEntrie(headers, IDentrie, { ...entrieData });
+      await api.postEntrie(headers, type, { ...entrieData });
       navigate("/home");
     } catch (error) {
       console.log(error);
@@ -44,7 +59,7 @@ export default function Entries() {
   }
   return (
     <Container>
-      <Header>{`Nova ${IDentrie === "input" ? "entrada" : "saída"}`}</Header>
+      <Header>{`${page === "edit" ? "Editar" : "Nova"} ${type === "input" ? "entrada" : "saída"}`}</Header>
       <ValueInputs onSubmit={handleSubmit}>
         {/* <Input type="text" placeholder="Valor" name="value" required></Input> */}
         <CurrencyInputValue
@@ -65,8 +80,8 @@ export default function Entries() {
           onChange={handleEntries}
           required
         ></Input>
-        <Button type="submit">{`Salvar ${
-          IDentrie === "input" ? "entrada" : "saída"
+        <Button type="submit">{`${page === "edit" ? "Atualizar" : "Salvar"} ${
+          type === "input" ? "entrada" : "saída"
         }`}</Button>
       </ValueInputs>
     </Container>
